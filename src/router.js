@@ -1,18 +1,26 @@
-import FooFirst from './pages/FooFirst.vue'
-import BarFirst from "./pages/BarFirst.vue";
-import VueRouter from "vue-router";
+import FooPage from './pages/FooPage.vue'
+import BarPage from "./pages/BarPage.vue";
+import HomePage from "./pages/HomePage.vue";
+import {createRouter, createWebHistory} from "vue-router";
 
 const routes = [
   {
+    path: "/",
+    component: HomePage,
+  },
+  {
     path: "/foo",
-    component: FooFirst,
+    component: FooPage,
   },
   {
     path: "/bar",
-    component: BarFirst,
+    component: BarPage,
   },
 ];
 
-const router = new VueRouter({ routes })
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
 
 export default router

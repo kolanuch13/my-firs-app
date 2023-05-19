@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <HeaderMain />
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
     <div class="content">
       <h2>{{ text }}</h2>
+      <router-view/>
       <ContainerMain>
-        <router-vue></router-vue>
         <ApartmentsFilterForm class="apartments-filter" @submit="filter" />
       </ContainerMain>
       <ContainerMain>
