@@ -12,7 +12,7 @@
         <div class="apartments-item__price">
           UAH {{ price }}
         </div>
-        <a href="https://facebook.com" @click.prevent.stop="handleLinkClick()">facebook</a>
+        <router-link :to="{name: 'apartment', params: {id}}" class="apartments-item__link"></router-link>
       </div>
     </div>
   </div>
@@ -26,6 +26,10 @@ import StarRating from '../atributes/StarRating'
       StarRating
     },
     props: {
+      id: {
+        type: String,
+        required:true,
+      },
       descr: {
         type: String,
         default: '',

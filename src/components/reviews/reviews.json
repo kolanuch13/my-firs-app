@@ -1,0 +1,22 @@
+[
+  {
+    "author": "John Doe",
+    "content": "I absolutely loved this apartment! The spacious layout, modern amenities, and stunning views made it a dream come true. The location was perfect, with easy access to shops, restaurants, and parks. I highly recommend it!",
+    "rating": 5
+  },
+  {
+    "author": "Emily Smith",
+    "content": "This apartment exceeded my expectations. The stylish decor, comfortable furnishings, and well-equipped kitchen made it a cozy and inviting space. The location was convenient, with public transportation nearby. I would definitely give it a solid 4 out of 5!",
+    "rating": 4.5
+  },
+  {
+    "author": "Alex Johnson",
+    "content": "I had a great experience staying in this apartment. It had everything I needed for a comfortable stay. The owner was friendly and responsive to any questions I had. The only downside was the occasional noise from the street. Overall, I would rate it a 3 out of 5.",
+    "rating": 3.2
+  },
+  {
+    "author": "Sophia Davis",
+    "content": "This apartment was a disappointment. The cleanliness was subpar, and the amenities were lacking. The location, however, was convenient with easy access to public transportation. I would rate it a 2 out of 5.",
+    "rating": 2.7
+  }
+]

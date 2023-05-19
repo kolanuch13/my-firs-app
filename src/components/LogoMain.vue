@@ -1,14 +1,14 @@
 <template>
   <div class="logo">
-    <img class="logo__image" src="../assets/svg/logo.svg" alt="logo">
+    <img class="logo__image" :src="require('../../public/img/svg/logo.svg')" alt="logo">
     <p class="logo__text"><span class="logo__text--orange">GO</span>Home</p>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'LogoMain'
-  }
+export default {
+  name: 'LogoMain',
+}
 </script>
 
 <style lang="scss" scoped>

@@ -52,10 +52,10 @@
     margin: 0 3px;
     flex-shrink: 0;
     &--colored {
-      background: url('../../../public/img/star-yellow.svg') center no-repeat;
+      background: url('../../../public/img/svg/star-yellow.svg') center no-repeat;
     }
     &--outlined {
-      background: url('../../../public/img/star-outlined.svg') center no-repeat;
+      background: url('../../../public/img/svg/star-outlined.svg') center no-repeat;
     }
   }
 </style>
