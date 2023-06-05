@@ -10,8 +10,8 @@
       <ApartmentsList :items="filteredApartments">
         <template v-slot:apartment="{ apartment }">
           <ApartmentsItem
-            :key="apartment.id"
-            :id="apartment.id"
+            :key="apartment._id"
+            :id="apartment._id"
             :descr="apartment.descr"
             :rating="apartment.rating"
             :imgSrc="apartment.photo"
@@ -28,9 +28,9 @@
 <script>
 import ApartmentsList from "../components/appartment/ApartmentsList.vue";
 import ApartmentsItem from "../components/appartment/ApartmentsItem.vue";
-import { apartment } from "../components/appartment/apartments";
 import ApartmentsFilterForm from "../components/appartment/ApartmentsFilterForm.vue";
 import ContainerMain from "../components/shared/ContainerMain.vue";
+import { getApartmentsList } from "@/services/apartments.service";
 
 export default {
   name: "HomePage",
@@ -43,7 +43,8 @@ export default {
   data() {
     return {
       text: "",
-      apartment,
+      apartment: [],
+      page: 0,
       filters: {
         city: "",
         price: 0,
@@ -54,6 +55,15 @@ export default {
     filteredApartments() {
       return this.filterByCityName(this.filterByPrice(this.apartment));
     },
+  },
+  async created() {
+    try {
+      const { data } = await getApartmentsList(this.page, 9);
+      console.log(data);
+      this.apartment = data.result;
+    } catch (error) {
+      console.log(error);
+    }
   },
   methods: {
     filter({ city, price }) {
@@ -77,7 +87,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .apartments-filter {
   margin-bottom: 40px;
 }

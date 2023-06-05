@@ -1,11 +1,14 @@
 <template>
   <main class="apartment-page">
     <ContainerMain>
-      <div class="apartment-page__content">
-        <ApartmentsInfo :apartment="apartment"/>
+      <div v-if="apartment" class="apartment-page__content">
+        <ApartmentsInfo :apartment="apartment" />
         <div class="apartment-page__additional-info">
-          <ApartmentsOwner class="apartment-page__owner" :owner="apartment.owner"/>
-          <ReviewsItem :reviews="reviewsList"/>
+          <ApartmentsOwner
+            class="apartment-page__owner"
+            :owner="apartment.owner"
+          />
+          <ReviewsItem :reviews="reviewsList" />
         </div>
       </div>
     </ContainerMain>
@@ -13,45 +16,56 @@
 </template>
 
 <script>
-import ContainerMain from "../components/shared/ContainerMain.vue"
-import { apartment } from "../components/appartment/apartments";
+import ContainerMain from "../components/shared/ContainerMain.vue";
 import ApartmentsInfo from "@/components/appartment/ApartmentsInfo.vue";
 import ApartmentsOwner from "@/components/appartment/ApartmentsOwner.vue";
 import ReviewsItem from "../components/reviews/index.vue";
-import reviewsList from "../components/reviews/reviews.json"
+import reviewsList from "../components/reviews/reviews.json";
+import { getApartmentById } from "@/services/apartments.service";
 
 export default {
-  name: 'ApartmentPage',
+  name: "ApartmentPage",
   components: {
     ContainerMain,
     ApartmentsInfo,
     ApartmentsOwner,
-    ReviewsItem
+    ReviewsItem,
+  },
+  data() {
+    return {
+      apartment: null
+    }
   },
   computed: {
     reviewsList() {
-      return reviewsList
+      return reviewsList;
     },
-    apartment() {
-      return apartment.find(apartment => apartment.id === this.$route.params.id)
+  },
+  async created() {
+    try {
+      const { id } = this.$route.params;
+      const { data } = await getApartmentById(id);
+      this.apartment = data;
+    } catch (error) {
+      console.log(error);
     }
   },
-  mounted() {
-    console.log(this.apartment);
-  }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.apartment-page{
+.apartment-page {
   padding-bottom: 55px;
   &__content {
     display: flex;
     align-items: flex-start;
     gap: 30px;
   }
-  &__owner {
-    min-width: 350px;
+  &__additional-info {
+    margin-top: 40px;
+    max-width: 350px;
+    flex-grow: 0;
+    flex-shrink: 1;
   }
 }
 </style>

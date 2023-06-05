@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <ContainerMain>
-      <LogoMain/>
+      <router-link to="/">
+        <LogoMain/>
+      </router-link>
     </ContainerMain>
   </header>
 </template>
@@ -27,5 +29,8 @@ import LogoMain from './LogoMain.vue';
   width: 100%;
   background-color: $background-color;
   padding: 16px 0;
+}
+a {
+  text-decoration: none;
 }
 </style>

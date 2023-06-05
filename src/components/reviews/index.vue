@@ -1,27 +1,68 @@
 <template>
   <section class="reviews">
-    <ReviewsItem v-for="review in reviews" :key="review.author" :review="review"/>
+    <div class="reviews__heading">
+      <h2 class="reviews__title">Summary raiting</h2>
+      <div class="reviews__rating">
+        <span>{{ amountIfReviews }} reviews</span>
+        <StarRating :rating="totalRaiting" />
+      </div>
+    </div>
+    <ReviewsItem
+      v-for="review in currentReviews"
+      :key="review.author"
+      :review="review"
+    />
+    <button @click="toggleReviews" class="reviews__show-more">Read {{buttonText}}</button>
   </section>
 </template>
 
 <script>
-import ReviewsItem from './reviews-item'
-  export default {
+import ReviewsItem from "./reviews-item";
+import StarRating from "../atributes/StarRating.vue";
+export default {
   name: "ReviewsList",
   components: {
-      ReviewsItem
+    ReviewsItem,
+    StarRating,
   },
   props: {
     reviews: {
       type: Array,
-        required: true
-      }
+      required: true,
+    },
+  },
+  data() {
+    return {reviewsLimit: 2,}
+  },
+  computed: {
+    totalRaiting() {
+      const total = this.reviews.reduce((acc, review) => acc + review.rating, 0);
+      return total / this.reviews.length;
+    },
+    amountIfReviews() {
+      return this.reviews.length;
+    },
+    currentReviews() {
+      return this.reviews.slice(0, this.reviewsLimit)
+    },
+    buttonText() {
+      return this.reviewsLimit === this.reviews.length
+        ? 'less'
+        : 'more'
+    }
+  },
+  methods: {
+    toggleReviews() {
+      this.reviewsLimit === this.reviews.length
+        ? this.reviewsLimit = 2
+        : this.reviewsLimit = this.reviews.length
     }
   }
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/scss/variables';
+@import "../../assets/scss/variables";
 .reviews {
   margin-top: 20px;
   background: $card-bg;

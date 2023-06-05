@@ -1,9 +1,15 @@
 <template>
   <form class="form" @submit.prevent="handleSubmit">
     <CustomSelect class="form__select" v-model="city" :items="cities" />
-    <CustomInput class="form__input" v-model="price" placeholder="Price" />
-    <SubmitButton class="form__submit" type="submit"
-      >Chose Apartment</SubmitButton
+    <CustomInput
+      type="number"
+      class="form__input"
+      v-model="price"
+      placeholder="Price"
+      error-message="Can`t be empty"
+      :rules="rules"
+    />
+    <SubmitButton class="form__submit" type="submit">Chose Apartment</SubmitButton
     >
   </form>
 </template>
@@ -12,6 +18,7 @@
 import CustomSelect from "../shared/CustomSelect";
 import CustomInput from "../shared/CustomInput";
 import SubmitButton from "../shared/SubmitButton";
+import { isRequired, chartLimit } from "../../utils/validationRules";
 
 export default {
   name: "ApartmentsFilterForm",
@@ -27,6 +34,9 @@ export default {
     };
   },
   computed: {
+    rules() {
+      return [isRequired, chartLimit(10)]
+    },
     cities() {
       return [
         { value: "", label: "City", selected: true },

@@ -51,6 +51,9 @@
     height: 16px;
     margin: 0 3px;
     flex-shrink: 0;
+    &:first-child {
+      margin-left: 0;
+    }
     &--colored {
       background: url('../../../public/img/svg/star-yellow.svg') center no-repeat;
     }
