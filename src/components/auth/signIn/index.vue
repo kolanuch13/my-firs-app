@@ -53,13 +53,12 @@ import CustomInput from "../../shared/CustomInput.vue";
 import Button from "../../shared/SubmitButton.vue";
 import AuthContainer from "../../auth/AuthContainer.vue";
 import MainTitle from "../../shared/MainTitle.vue";
-
 import {
   emailValidation,
   passwordValidation,
   isRequired,
 } from "../../../utils/validationRules";
-import {signInUser} from '../../../services/authService'
+import { mapActions } from "vuex";
 
 export default {
   name: "SignInForm",
@@ -107,16 +106,16 @@ export default {
     },
   },
   methods: {
+    ...mapActions('auth', ['signIn']),
     async handleSubmit() {
       const { form } = this.$refs;
       const isFormValid = form.validate();
-      const { name, email, password } = this.formData 
       
       if (!isFormValid) {
         try {
           this.loading = true;
-          const {data} = await signInUser({name, email, password})
-          console.log(data);
+          await this.signIn(this.formData)
+          this.$router.push({name: 'home'})
           form.reset()
         } catch (error) {
           this.$notify({
@@ -127,6 +126,8 @@ export default {
         } finally {
           this.loading = false
         }
+      } else {
+        console.log("form does not valid");
       }
     },
   },
