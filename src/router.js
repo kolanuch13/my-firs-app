@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage.vue";
 import ApartmentPage from "./pages/ApartmentPage.vue";
 import ErrorPage from "./pages/ErrorPage.vue";
 import LoginPage from './pages/LoginPage.vue'
+import SignInPage from './pages/SignInPage.vue'
 
 import VueRouter from "vue-router";
 
@@ -32,6 +33,11 @@ const routes = [
     path: "/login",
     component: LoginPage,
     name: "login-page",
+  },
+  {
+    path: "/signIn",
+    component: SignInPage,
+    name: "signIn-page",
   },
   {
     path: "*",

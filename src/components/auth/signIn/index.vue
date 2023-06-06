@@ -1,13 +1,22 @@
 <template>
-  <AuthContainer class="login">
-    <MainTitle class="login__title"> Log in </MainTitle>
+  <AuthContainer class="signIn">
+    <MainTitle class="signIn__title"> Sign in </MainTitle>
     <FormComponent
-      class="login__form"
+      class="signIn__form"
       ref="form"
       @submit.prevent="handleSubmit"
     >
       <CustomInput
-        class="login__input"
+        class="signIn__input"
+        v-model="formData.name"
+        name="name"
+        type="text"
+        placeholder="Name"
+        :rules="nameRules"
+        autocomplete="username"
+      />
+      <CustomInput
+        class="signIn__input"
         v-model="formData.email"
         name="email"
         type="email"
@@ -16,7 +25,7 @@
         autocomplete="email"
       />
       <CustomInput
-        class="login__input"
+        class="signIn__input"
         v-model="formData.password"
         name="password"
         type="password"
@@ -24,9 +33,16 @@
         :rules="passwordRules"
         autocomplete="current-password"
       />
-      <Button class="login__button" type="submit" :loading="loading"
-        >Submit</Button
-      >
+      <CustomInput
+        class="signIn__input"
+        v-model="formData.confirmPassword"
+        name="password"
+        type="password"
+        placeholder="Confirm password"
+        :rules="confirmPasswordRules"
+        autocomplete="current-password"
+      />
+      <Button class="signIn__button" type="submit" :loading="loading">Submit</Button>
     </FormComponent>
   </AuthContainer>
 </template>
@@ -43,10 +59,10 @@ import {
   passwordValidation,
   isRequired,
 } from "../../../utils/validationRules";
-import { loginUser } from "../../../services/authService";
+import {signInUser} from '../../../services/authService'
 
 export default {
-  name: "LoginForm",
+  name: "SignInForm",
   components: {
     FormComponent,
     CustomInput,
@@ -59,8 +75,10 @@ export default {
     return {
       loading: false,
       formData: {
+        name: "",
         email: "",
         password: "",
+        confirmPassword: "",
       },
     };
   },
@@ -72,26 +90,37 @@ export default {
         isRequired,
       };
     },
+    nameRules() {
+      return [this.rules.isRequired];
+    },
     emailRules() {
       return [this.rules.emailValidation, this.rules.isRequired];
     },
     passwordRules() {
-      return [this.rules.isRequired];
+      return [this.rules.passwordValidation, this.rules.isRequired];
+    },
+    confirmPasswordRules() {
+      return [(val) => ({
+        hasPassed: val === this.formData.password,
+        message: 'Paswords are not similar'
+      })]
     },
   },
   methods: {
     async handleSubmit() {
       const { form } = this.$refs;
       const isFormValid = form.validate();
+      const {name, email, password} = this.formData 
       if (isFormValid) {
         try {
           this.loading = true;
-          const { data } = await loginUser(this.formData);
+          const {data} = await signInUser({name, email, password})
           console.log(data);
+          form.reset()
         } catch (error) {
           console.log(error);
         } finally {
-          this.loading = false;
+          this.loading = false
         }
       }
     },
@@ -100,7 +129,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login {
+.signIn {
   &__form {
     display: block;
     flex-direction: column;
