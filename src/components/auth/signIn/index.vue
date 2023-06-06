@@ -110,15 +110,20 @@ export default {
     async handleSubmit() {
       const { form } = this.$refs;
       const isFormValid = form.validate();
-      const {name, email, password} = this.formData 
-      if (isFormValid) {
+      const { name, email, password } = this.formData 
+      
+      if (!isFormValid) {
         try {
           this.loading = true;
           const {data} = await signInUser({name, email, password})
           console.log(data);
           form.reset()
         } catch (error) {
-          console.log(error);
+          this.$notify({
+            type: 'error',
+            title: `Ouups!`,
+            text: error.message
+          });
         } finally {
           this.loading = false
         }
