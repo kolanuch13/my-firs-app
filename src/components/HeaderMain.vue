@@ -29,6 +29,7 @@ import LogoMain from './LogoMain.vue';
   width: 100%;
   background-color: $background-color;
   padding: 16px 0;
+  z-index: 100;
 }
 a {
   text-decoration: none;

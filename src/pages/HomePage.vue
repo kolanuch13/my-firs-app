@@ -1,28 +1,30 @@
 <template>
-  <main class="home-page">
-    <ContainerMain>
-      <ApartmentsFilterForm class="apartments-filter" @submit="filter" />
-    </ContainerMain>
-    <ContainerMain>
-      <p v-if="!filteredApartments.length">
-        There is no apartment with that options
-      </p>
-      <ApartmentsList :items="filteredApartments">
-        <template v-slot:apartment="{ apartment }">
-          <ApartmentsItem
-            :key="apartment._id"
-            :id="apartment._id"
-            :descr="apartment.descr"
-            :rating="apartment.rating"
-            :imgSrc="apartment.photo"
-            :price="apartment.price"
-            class="apartments-list__item"
-            @click.native="handleItemClick"
-          />
-        </template>
-      </ApartmentsList>
-    </ContainerMain>
-  </main>
+  <SectionWithHeaderSpacer>
+    <main class="home-page">
+      <ContainerMain>
+        <ApartmentsFilterForm class="apartments-filter" @submit="filter" />
+      </ContainerMain>
+      <ContainerMain>
+        <p v-if="!filteredApartments.length">
+          There is no apartment with that options
+        </p>
+        <ApartmentsList :items="filteredApartments">
+          <template v-slot:apartment="{ apartment }">
+            <ApartmentsItem
+              :key="apartment._id"
+              :id="apartment._id"
+              :descr="apartment.descr"
+              :rating="apartment.rating"
+              :imgSrc="apartment.photo"
+              :price="apartment.price"
+              class="apartments-list__item"
+              @click.native="handleItemClick"
+            />
+          </template>
+        </ApartmentsList>
+      </ContainerMain>
+    </main>
+  </SectionWithHeaderSpacer>
 </template>
 
 <script>
@@ -30,6 +32,7 @@ import ApartmentsList from "../components/appartment/ApartmentsList.vue";
 import ApartmentsItem from "../components/appartment/ApartmentsItem.vue";
 import ApartmentsFilterForm from "../components/appartment/ApartmentsFilterForm.vue";
 import ContainerMain from "../components/shared/ContainerMain.vue";
+import SectionWithHeaderSpacer from "@/components/shared/SectionWithHeaderSpacer.vue";
 import { getApartmentsList } from "@/services/apartments.service";
 
 export default {
@@ -39,6 +42,7 @@ export default {
     ApartmentsItem,
     ApartmentsFilterForm,
     ContainerMain,
+    SectionWithHeaderSpacer
   },
   data() {
     return {
