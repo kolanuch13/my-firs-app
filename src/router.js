@@ -1,10 +1,11 @@
-import FooPage from './pages/FooPage.vue'
+import FooPage from "./pages/FooPage.vue";
 import BarPage from "./pages/BarPage.vue";
 import HomePage from "./pages/HomePage.vue";
 import ApartmentPage from "./pages/ApartmentPage.vue";
 import ErrorPage from "./pages/ErrorPage.vue";
-import LoginPage from './pages/LoginPage.vue'
-import SignInPage from './pages/SignInPage.vue'
+import LoginPage from "./pages/LoginPage.vue";
+import SignInPage from "./pages/SignInPage.vue";
+import MyOrdersPage from "./pages/MyOrdersPage";
 
 import VueRouter from "vue-router";
 
@@ -30,6 +31,11 @@ const routes = [
     name: "apartment",
   },
   {
+    path: "/my-orders",
+    component: MyOrdersPage,
+    name: "my-orders",
+  },
+  {
     path: "/login",
     component: LoginPage,
     name: "login-page",
@@ -48,7 +54,7 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: "history"
+  mode: "history",
 });
 
-export default router
+export default router;
