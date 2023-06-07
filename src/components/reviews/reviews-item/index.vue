@@ -27,8 +27,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../assets/scss/variables.scss";
 .reviews-item {
-  background: #fff;
+  background: $white-color;
   padding: 20px 22px;
   line-height: 1.3;
   margin-bottom: 2px;

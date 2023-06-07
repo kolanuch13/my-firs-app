@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import HeaderMain from "./components/HeaderMain.vue";
+import HeaderMain from "./components/header/index.vue";
 import FooterMain from "./components/FooterMain.vue";
 import NotificationsMain from './components/notifications'
 
@@ -26,6 +26,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./assets/scss/variables.scss";
+
 #app {
   display: flex;
   flex-direction: column;
@@ -33,6 +35,7 @@ export default {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $white-color;
 }
 
 .content {

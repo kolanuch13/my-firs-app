@@ -11,10 +11,11 @@
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/scss/variables.scss";
 .auth-container {
   padding: 30px;
   max-width: 410px;
   width: 100%;
-  background-color: #fff;
+  background-color: $white-color;
 }
 </style>

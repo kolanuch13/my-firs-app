@@ -1,4 +1,4 @@
-import { loginUser, signInUser } from "../../services/authService";
+import { loginUser, signInUser, logoutUser } from "../../services/auth.service";
 
 const initialState = {
   user: null,
@@ -8,12 +8,20 @@ const initialState = {
 export default {
   namespaced: true,
   state: { ...initialState },
+  getters: {
+    isLoggedIn(state) {
+      return Boolean(state.token);
+    },
+  },
   mutations: {
     setUserData(state, userData) {
       state.user = userData;
     },
     setToken(state, token) {
       state.token = token;
+    },
+    clearUserData(state) {
+      Object.assign(state, { ...initialState });
     },
   },
   actions: {
@@ -30,6 +38,10 @@ export default {
 
       commit("setUserData", user);
       commit("setToken", token);
+    },
+    async logoutUser({commit}) {
+      await logoutUser();
+      commit('clearUserData')
     },
   },
 };

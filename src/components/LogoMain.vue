@@ -31,7 +31,7 @@ export default {
       color: $main-color;
 
       &--orange {
-        color: #fff;
+        color: $white-color;
       }
     }
   }

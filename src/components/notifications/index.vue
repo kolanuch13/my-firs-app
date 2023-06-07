@@ -9,10 +9,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/scss/variables.scss";
 ::v-deep .vue-notification {
   padding: 10px;
   margin: 0 5px 5px;
-  color: #ffffff;
+  color: $white-color;
   background: #44A4FC;
   border-left: 5px solid #187FE7;
 

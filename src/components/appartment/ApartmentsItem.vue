@@ -1,65 +1,67 @@
 <template>
-  <div class="apartments-item" >
+  <div class="apartments-item">
     <div class="apartments-item__inner">
-      <img class="apartments-item__photo" :src="imgSrc" alt="" >
+      <img class="apartments-item__photo" :src="imgSrc" alt="" />
       <div class="apartments-item__content">
         <p class="apartments-item__description">
           {{ descr }}
         </p>
         <div class="apartments-item__rating">
-          <StarRating :rating="rating"/>
+          <StarRating :rating="rating" />
         </div>
-        <div class="apartments-item__price">
-          UAH {{ price }}
-        </div>
-        <router-link :to="{name: 'apartment', params: {id}}" class="apartments-item__link"></router-link>
+        <div class="apartments-item__price">UAH {{ price }}</div>
+        <router-link
+          :to="{ name: 'apartment', params: { id } }"
+          class="apartments-item__link"
+        ></router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import StarRating from '../atributes/StarRating'
-  export default {
-    name: 'AppartmentItem',
-    components: {
-      StarRating
+import StarRating from "../atributes/StarRating";
+export default {
+  name: "AppartmentItem",
+  components: {
+    StarRating,
+  },
+  props: {
+    id: {
+      type: String,
+      required: true,
     },
-    props: {
-      id: {
-        type: String,
-        required:true,
-      },
-      descr: {
-        type: String,
-        default: '',
-      },
-      rating: {
-        type: Number,
-        default: 0,
-      },
-      price: {
-        type: Number,
-        required: true,
-      },
-      imgSrc: {
-        type: String,
-        default: '',
-      }
+    descr: {
+      type: String,
+      default: "",
     },
-    methods: {
-      log(i, event) {
-          console.log(i);
-          console.log(event);
-        },
-      handleLinkClick() {
-        console.log("facebook link clicked");
-      }
+    rating: {
+      type: Number,
+      default: 0,
     },
-  }
+    price: {
+      type: Number,
+      required: true,
+    },
+    imgSrc: {
+      type: String,
+      default: "",
+    },
+  },
+  methods: {
+    log(i, event) {
+      console.log(i);
+      console.log(event);
+    },
+    handleLinkClick() {
+      console.log("facebook link clicked");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/scss/variables.scss";
 .apartments-item {
   position: relative;
   width: 33.333%;
@@ -77,7 +79,7 @@ import StarRating from '../atributes/StarRating'
     transition: opacity 0.4s;
     background: rgba(#0f1d2d, 0.7);
     height: 200px;
-    color: #fff;
+    color: $white-color;
     text-align: left;
     line-height: 1.4;
     cursor: pointer;

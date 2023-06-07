@@ -63,7 +63,6 @@ export default {
   async created() {
     try {
       const { data } = await getApartmentsList(this.page, 9);
-      console.log(data);
       this.apartment = data.result;
     } catch (error) {
       console.log(error);

@@ -87,7 +87,7 @@ export default {
       if (isFormValid) {
         try {
           this.loading = true;
-          await this.login('this.formData')
+          await this.login(this.formData)
           this.$router.push({ name: 'home' })
           form.reset()
         } catch (error) {
