@@ -24,12 +24,6 @@ export default {
       required: true,
     },
   },
-  mounted() {
-    console.log(this.items);
-    // this.items.forEach(element => {
-    //   console.log(element);
-    // });
-  }
 };
 </script>
 

@@ -35,7 +35,6 @@ export default {
     try {
       const { data } = await getOrders();
       this.orders = data.orders;
-      console.log(this.orders);
     } catch (error) {
       this.$notify({
         type: "error",

@@ -27,7 +27,7 @@
         >
       </li>
       <li class="account-actions__item">
-        <button class="account-actions__logout" @click="logoutUser">Logout</button>
+        <button class="account-actions__logout" @click="hahdleLogout">Logout</button>
       </li>
     </ul>
   </div>
@@ -54,6 +54,21 @@ export default {
     toggleOpen() {
       this.isOpen = !this.isOpen;
     },
+    async hahdleLogout() {
+      try {
+        await this.logoutUser()
+        const { requiresAuth } = this.$route.meta;
+        if (requiresAuth) {
+          this.$router.push({name: 'login-page'})
+        }
+      } catch (error) {
+        this.$notify({
+          type: 'error',
+          title: 'You cannot logout from here😈',
+          text: 'Muahahahahahaaaaaaaa'
+        })
+      }
+    }
   },
 };
 </script>
