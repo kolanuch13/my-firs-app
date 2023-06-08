@@ -33,12 +33,12 @@ export default {
     ApartmentsInfo,
     ApartmentsOwner,
     ReviewsItem,
-    SectionWithHeaderSpacer
+    SectionWithHeaderSpacer,
   },
   data() {
     return {
-      apartment: null
-    }
+      apartment: null,
+    };
   },
   computed: {
     reviewsList() {
@@ -70,6 +70,19 @@ export default {
     max-width: 350px;
     flex-grow: 0;
     flex-shrink: 1;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .apartment-page {
+    &__content {
+      flex-direction: column;
+    }
+
+    &__additional-info {
+      max-width: 100vw;
+      flex-shrink: 0;
+    }
   }
 }
 </style>

@@ -1,20 +1,14 @@
 <template>
-  <ContainerMain>
     <div class="apartments-list">
       <template v-for="apartment in items">
         <slot name="apartment" v-bind:apartment="apartment"></slot>
       </template>
     </div>
-  </ContainerMain>
 </template>
 
 <script>
-import ContainerMain from '../shared/ContainerMain.vue';
   export default {
     name: 'ApartmentsList',
-    components: {
-      ContainerMain
-    },
     props: {
       items: {
         type: Array,
@@ -30,5 +24,11 @@ import ContainerMain from '../shared/ContainerMain.vue';
   flex-wrap: wrap;
   margin-left: -15px;
   margin-right: -15px;
+}
+
+@media screen and (max-width: 680px) {
+  .apartments-list {
+    flex-direction: column;
+  }
 }
 </style>

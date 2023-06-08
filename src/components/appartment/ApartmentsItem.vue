@@ -122,4 +122,10 @@ export default {
     height: 100%;
   }
 }
+
+@media screen and (max-width: 680px) {
+  .apartments-item {
+    width: 100vw;
+  }
+}
 </style>

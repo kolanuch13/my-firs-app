@@ -4,7 +4,8 @@
     <template v-else>
       <OrdersItem
         v-for="order in items"
-        :key="order.id"
+        :key="order._id"
+        :orderId="order._id"
         :order="order.apartmentId"
       />
     </template>

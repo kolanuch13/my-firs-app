@@ -104,6 +104,8 @@ export default {
   outline: none;
   line-height: inherit;
   padding: 8px 15px;
+  border-radius: 0;
+
 
   &::placeholder {
     color: inherit;

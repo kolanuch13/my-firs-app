@@ -12,7 +12,20 @@
 
 <style lang="scss" scoped>
   .container {
-    width: 1110px;
-    margin: 0 auto;
   }
+  
+  @media screen and (max-width: 680px) {
+    .container {
+      margin: 0 15px;
+    }
+  }
+
+  @media screen and (min-width: 1110px) {
+    .container {
+      width: 1110px;
+      margin: 0 auto;
+    }
+  }
+
+  
 </style>

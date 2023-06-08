@@ -74,4 +74,20 @@ export default {
     margin-left: auto;
   }
 }
+
+  @media screen and (max-width: 680px) {
+    .form {
+      flex-direction: column;
+      gap: 10px;
+      width: calc(100vw - 30px);
+
+        &__select {
+          margin-right: 0px;
+        }
+
+        &__submit {
+          margin-left: 0;
+        }
+    }
+  }
 </style>

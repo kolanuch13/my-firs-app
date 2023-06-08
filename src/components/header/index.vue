@@ -54,4 +54,10 @@ import { mapGetters } from 'vuex';
 a {
   text-decoration: none;
 }
+
+@media screen and (max-width: 680px) {
+  .header {
+    width: 100vw;
+  }
+}
 </style>

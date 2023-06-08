@@ -41,6 +41,8 @@
 <style lang="scss" scoped>
   @import'../../assets/scss/variables.scss';
   .custom-select {
+    border-radius: 0;
+    background: none;
     min-height: 40px;
     border: 2px solid $main-color;
     font-size: 18px;

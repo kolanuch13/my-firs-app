@@ -7,3 +7,7 @@ export const bookApartment = (payload) => {
 export const getOrders = () => {
   return axios.get('/orders')
 }
+
+export const deleteOrder = (id) => {
+  return axios.delete(`/orders/${id}`);
+}

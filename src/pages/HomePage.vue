@@ -18,10 +18,18 @@
               :imgSrc="apartment.photo"
               :price="apartment.price"
               class="apartments-list__item"
-              @click.native="handleItemClick"
             />
           </template>
         </ApartmentsList>
+        <div class="pagination-wrapper">
+          <paginate
+            :value="page"
+            :page-count="maxPage"
+            :clickHandler="onPaginationClick"
+            :container-class="'pagination'"
+          >
+          </paginate>
+        </div>
       </ContainerMain>
     </main>
   </SectionWithHeaderSpacer>
@@ -49,6 +57,7 @@ export default {
       text: "",
       apartment: [],
       page: 0,
+      maxPage: 0,
       filters: {
         city: "",
         price: 0,
@@ -64,6 +73,7 @@ export default {
     try {
       const { data } = await getApartmentsList(this.page, 9);
       this.apartment = data.result;
+      this.maxPage = data.allItems + 1
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +95,16 @@ export default {
         (apartment) => apartment.price <= this.filters.price
       );
     },
+    async onPaginationClick(num) {
+      this.page = num - 1;
+      try {
+        const { data } = await getApartmentsList(this.page, 9);
+        this.apartment = data.result;
+        this.maxPage = data.allItems + 1
+      } catch (error) {
+        console.log(error);
+      }
+    }
   },
 };
 </script>
@@ -92,5 +112,25 @@ export default {
 <style lang="scss" scoped>
 .apartments-filter {
   margin-bottom: 40px;
+
+  &__pagination {
+    display: flex;
+    flex-direction: row;
+    background-color: red;
+  }
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.pagination {
+  display: flex;
+  padding-left: 0;
+  margin: 0 auto;
+  border-radius: 4px;
+  gap: 5px;
 }
 </style>
