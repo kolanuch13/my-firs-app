@@ -1,8 +1,8 @@
 {
-  "name": "my-first-app",
+  "name": "vue-app-go-home",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kolanuch13.github.io/my-first-app/",
+  "homepage": "https://kolanuch13.github.io/vue-app-go-home/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
