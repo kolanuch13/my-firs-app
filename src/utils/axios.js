@@ -1,7 +1,7 @@
 import axios from "axios";
 import store from "../store/index";
 
-axios.defaults.baseURL = "http://localhost:4000/api";
+axios.defaults.baseURL = "https://my-first-app-vue-backend.onrender.com/api";
 axios.interceptors.request.use(
   (config) => {
     const { token } = store.state.auth;
